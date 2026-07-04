@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Laporan Premium Psikologia.id</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Psikologia<span>.id</span></a>
+    <ul class="nav-links">
+      <li><a href="hasil.html">← Kembali ke Hasil</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container checkout-wrap">
+
+  <!-- Form checkout -->
+  <div id="checkout-form-box">
+    <h1 style="font-size:1.6rem; margin-bottom:6px;">Checkout</h1>
+    <p style="color:var(--ink-soft); margin-bottom:24px;">Selesaikan pembayaran untuk membuka laporan lengkapmu.</p>
+
+    <div class="card" style="padding:28px; margin-bottom:24px;">
+      <div class="order-summary"><span id="product-name">Laporan Premium</span><span><s style="color:var(--ink-soft);" id="product-strike">Rp 99.000</s></span></div>
+      <div class="order-summary"><span>Diskon promo</span><span style="color:var(--success);" id="discount-amount">−Rp 50.000</span></div>
+      <div class="order-summary total"><span>Total</span><span id="total-amount">Rp 49.000</span></div>
+    </div>
+
+    <div class="card" style="padding:28px;">
+      <form id="pay-form">
+        <div class="form-field">
+          <label for="email">Email (untuk tanda terima)</label>
+          <input type="email" id="email" placeholder="nama@email.com" required>
+        </div>
+
+        <p style="font-weight:700; font-size:.9rem; margin-bottom:8px;">Metode pembayaran</p>
+        <div class="pay-methods">
+          <label><input type="radio" name="method" value="qris" checked> QRIS (semua e-wallet & m-banking)</label>
+          <label><input type="radio" name="method" value="va"> Virtual Account (BCA / Mandiri / BNI / BRI)</label>
+          <label><input type="radio" name="method" value="card"> Kartu Kredit / Debit</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="btn-pay">Bayar Rp 49.000</button>
+        <p class="pay-note">Ini adalah simulasi pembayaran (mode demo). Tidak ada dana sungguhan yang ditarik. Integrasi Midtrans/Xendit siap dipasang di titik ini.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Status memproses -->
+  <div class="card success-box hidden" id="processing-box">
+    <div class="status-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+    <h2 style="margin:12px 0 6px;">Memproses pembayaran…</h2>
+    <p style="color:var(--ink-soft);">Mohon tunggu sebentar.</p>
+  </div>
+
+  <!-- Status sukses -->
+  <div class="card success-box hidden" id="success-box">
+    <div class="status-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg></div>
+    <h2 style="margin:12px 0 6px;">Pembayaran berhasil!</h2>
+    <p style="color:var(--ink-soft); margin-bottom:8px;">Laporan Premium-mu sudah terbuka.</p>
+    <p style="color:var(--ink-soft); font-size:.85rem; margin-bottom:24px;" id="receipt-line"></p>
+    <a href="hasil.html" class="btn btn-primary btn-lg" id="btn-view-result">Lihat Laporan Lengkap →</a>
+  </div>
+
+</div>
+
+<script src="assets/js/questions.js"></script>
+<script src="assets/js/hsp.js"></script>
+<script src="assets/js/checkout.js"></script>
+</body>
+</html>
