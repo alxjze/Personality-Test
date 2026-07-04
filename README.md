@@ -11,7 +11,16 @@ Landing page + tes kepribadian interaktif berbahasa Indonesia dengan model freem
   - **Big Five (OCEAN)** — 20 pertanyaan, memetakan 5 dimensi kepribadian → arketipe.
   - **HSP (Highly Sensitive Person)** — 21 pertanyaan, mengukur kepekaan dari 3 aspek (EOE, LST, AES) → level sensitivitas.
 - **Tes** (`test.html?test=<id>`) — Likert 1–5, progress bar, auto-lanjut, jawaban tersimpan di `localStorage`.
-- **Halaman hasil** (`hasil.html?test=<id>`) — label/arketipe + skor dimensi **gratis**; analisis kekuatan/kelemahan, karier, hubungan, dan tips di balik **paywall** (blur sampai bayar).
+- **Halaman hasil** (`hasil.html?test=<id>`) — label/arketipe + skor dimensi **gratis**; **laporan premium** terkustomisasi di balik **paywall** (blur sampai bayar).
+
+### Laporan premium (terkustomisasi dari skor aktual)
+
+Laporan tidak hanya berdasar satu dimensi dominan, tetapi menganalisis seluruh skor pengguna:
+- **Ringkasan personal** — dirakit dari dimensi tertinggi & terendah pengguna.
+- **Profil per dimensi** — tiap dimensi diberi band **Tinggi/Sedang/Rendah** (`window.psiBand`) + interpretasi spesifik per band.
+- **Kekuatan**, **area pengembangan**, **gaya kerja & belajar**, **karier**, **relasi & komunikasi**, **stres & kesejahteraan**, dan **rencana pengembangan 30 hari**.
+
+`getResult(scores)` mengembalikan `{ monogram, name, tagline, desc, summary, barsTitle, bars, dimensionInsights, premium }`, di mana `premium` memuat `{ strengths, weaknesses, careers, relationship, communication, workStyle, wellbeing, tips, actionPlan }`.
 - **Checkout** (`checkout.html?test=<id>`) — ringkasan pesanan dinamis per tes, metode (QRIS / VA / kartu), simulasi pembayaran → laporan premium terbuka.
 
 ## Arsitektur multi-tes
@@ -24,7 +33,8 @@ window.TESTS["<id>"] = {
   questions,            // [{ dim, reverse, text }]
   likert,               // [{ value, label }]
   computeScores(answers) -> { <dim>: pct, ... },
-  getResult(scores) -> { monogram, name, tagline, desc, barsTitle, bars:[{name,en,pct}], premium },
+  getResult(scores) -> { monogram, name, tagline, desc, summary, barsTitle,
+                         bars:[{name,en,pct}], dimensionInsights:[{name,en,pct,band,text}], premium },
 };
 ```
 

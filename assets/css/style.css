@@ -194,6 +194,17 @@ footer.site-footer { padding: 44px 0; border-top: 1px solid var(--border); color
   color: var(--leaf); display: block; text-transform: uppercase; margin-bottom: 4px;
 }
 
+/* Kartu insight per dimensi */
+.insight { padding: 16px 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: var(--bg-warm); }
+.insight-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.insight-name { font-weight: 700; font-family: var(--serif); font-size: 1.02rem; }
+.insight-text { color: var(--ink-soft); font-size: .93rem; margin: 0; }
+.band-chip { font-size: .74rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; white-space: nowrap; letter-spacing: .02em; }
+.band-chip.high { background: #e4f0e8; color: var(--success); }
+.band-chip.med { background: #eef1ea; color: var(--ink-soft); }
+.band-chip.low { background: #f3ede3; color: #a6822e; }
+#actionplan-list li { padding: 5px 0; }
+
 /* Premium / paywall */
 .premium-lock { position: relative; overflow: hidden; }
 .premium-content.locked { filter: blur(7px); user-select: none; pointer-events: none; }

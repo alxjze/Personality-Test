@@ -45,6 +45,25 @@
     AES: { name: "Kepekaan Estetika", en: "Aesthetic Sensitivity" },
   };
 
+  // Interpretasi per subskala berdasar band skor (personalisasi laporan).
+  const HSP_DIM_BANDS = {
+    EOE: {
+      high: "Kamu sangat mudah terstimulasi — banyak hal sekaligus cepat membuatmu kewalahan, dan kamu butuh jeda untuk memproses.",
+      med: "Kamu kadang merasa kewalahan pada situasi yang padat, tapi umumnya masih bisa mengelolanya.",
+      low: "Kamu jarang merasa kewalahan meski banyak hal terjadi sekaligus. Kamu tahan terhadap kesibukan dan tekanan.",
+    },
+    LST: {
+      high: "Indramu sangat peka — suara, cahaya, tekstur, dan aroma terasa jauh lebih kuat bagimu daripada kebanyakan orang.",
+      med: "Kamu cukup peka terhadap rangsangan sensori tertentu, meski tidak selalu terganggu olehnya.",
+      low: "Ambang sensorimu tinggi — kamu tidak mudah terganggu oleh kebisingan, cahaya, atau rangsangan fisik lain.",
+    },
+    AES: {
+      high: "Kamu sangat tersentuh oleh keindahan, seni, dan nuansa halus. Kehidupan batinmu kaya dan reflektif.",
+      med: "Kamu mengapresiasi keindahan dan makna, meski tidak selalu larut mendalam di dalamnya.",
+      low: "Kamu cenderung praktis dan tidak terlalu terpaku pada nuansa estetika atau perenungan mendalam.",
+    },
+  };
+
   function hspScores(answers) {
     const sums = { EOE: 0, LST: 0, AES: 0 };
     const counts = { EOE: 0, LST: 0, AES: 0 };
@@ -76,7 +95,11 @@
         weaknesses: ["Mudah kewalahan oleh stimulasi berlebih", "Rentan menyerap emosi orang lain", "Butuh waktu pemulihan lebih lama", "Cenderung menghindari konflik dan keramaian"],
         careers: ["Konselor / terapis", "Seniman, penulis, musisi", "Peneliti & analis mendalam", "Perawat, guru, pekerja sosial"],
         relationship: "Kamu pasangan yang penuh perhatian dan mendalam, peka terhadap kebutuhan yang tak terucap. Tantanganmu: mengomunikasikan batas dan kebutuhan akan waktu menyendiri tanpa merasa bersalah. Pasangan yang memahami ritme energimu akan sangat berarti.",
+        communication: "Kamu menangkap nuansa emosi yang tak terucap. Latih menyuarakan kebutuhanmu akan jeda dan ketenangan secara langsung, tanpa merasa bersalah.",
+        workStyle: "Kamu berkembang di lingkungan kerja yang tenang, bermakna, dan tidak kelebihan stimulasi. Ruang terbuka yang bising atau multitasking ekstrem cepat menguras energimu.",
+        wellbeing: "Pemulihan bukan kemewahan bagimu, melainkan kebutuhan. Jadwalkan waktu sunyi harian sebelum tangki energimu benar-benar kosong.",
         tips: ["Jadwalkan waktu tenang harian untuk 'mengosongkan' stimulasi", "Kurangi paparan berita/media yang memicu kewalahan", "Kenali dan hormati batas energimu — istirahat sebelum penuh", "Ubah kepekaanmu jadi karya: menulis, seni, atau membantu orang lain"],
+        actionPlan: ["Minggu 1 — Buat 'zona tenang' harian 20 menit tanpa layar", "Minggu 2 — Kurangi satu sumber over-stimulasi (mis. notifikasi)", "Minggu 3 — Latih menyampaikan satu batas dengan tenang", "Minggu 4 — Salurkan kepekaanmu ke satu karya atau kegiatan bermakna"],
       },
     },
     {
@@ -88,7 +111,11 @@
         weaknesses: ["Kadang meremehkan kebutuhan istirahat sendiri", "Bisa kewalahan pada situasi ekstrem", "Sensitivitas naik-turun tergantung kondisi"],
         careers: ["Manajer tim yang empatik", "Desainer / kreator", "Pendidik", "Profesi layanan yang seimbang"],
         relationship: "Kamu hadir dengan hangat namun tetap mandiri secara emosional. Kamu bisa mendukung pasangan tanpa kehilangan diri — kekuatan yang membuat hubungan sehat dan seimbang.",
+        communication: "Kamu peka namun tetap tegas. Manfaatkan empatimu untuk memahami orang lain tanpa kehilangan batas sehatmu sendiri.",
+        workStyle: "Kamu fleksibel — bisa menikmati lingkungan dinamis maupun tenang, selama ada keseimbangan antara stimulasi dan pemulihan.",
+        wellbeing: "Kamu umumnya seimbang; tetap kenali situasi ekstrem yang bisa memicu kewalahan dan siapkan jeda untuknya.",
         tips: ["Kenali situasi spesifik yang memicu kewalahan bagimu", "Tetap sisihkan waktu memulihkan energi walau merasa 'baik-baik saja'", "Manfaatkan kepekaanmu di momen yang membutuhkan empati"],
+        actionPlan: ["Minggu 1 — Catat situasi spesifik yang paling menguras energimu", "Minggu 2 — Sisipkan jeda singkat di hari-hari yang padat", "Minggu 3 — Manfaatkan kepekaanmu di momen yang butuh empati", "Minggu 4 — Evaluasi ritme energi yang paling cocok untukmu"],
       },
     },
     {
@@ -100,7 +127,11 @@
         weaknesses: ["Kadang kurang menangkap sinyal halus orang lain", "Bisa terlihat 'tebal' terhadap suasana", "Perlu usaha lebih untuk memperdalam empati"],
         careers: ["Peran operasional bertempo tinggi", "Lapangan / layanan darurat", "Sales & negosiasi", "Manajemen situasi krisis"],
         relationship: "Kamu pasangan yang stabil dan tidak mudah panik. Melatih untuk lebih jeli membaca kebutuhan emosional pasangan akan memperkaya kedekatanmu.",
+        communication: "Kamu stabil dan tidak mudah larut. Latih lebih jeli menangkap sinyal halus emosi orang lain agar mereka merasa benar-benar dipahami.",
+        workStyle: "Kamu tahan terhadap lingkungan bertempo tinggi dan penuh stimulasi yang membuat orang lain kelelahan — sebuah keunggulan nyata.",
+        wellbeing: "Ketahananmu adalah aset; tetap sisihkan waktu untuk memperdalam koneksi dan menemukan makna, bukan hanya menyelesaikan tugas.",
         tips: ["Latih mendengarkan aktif dan bertanya tentang perasaan", "Perhatikan bahasa tubuh dan nada, bukan hanya kata-kata", "Sesekali perlambat untuk menikmati detail dan keindahan"],
+        actionPlan: ["Minggu 1 — Tanyakan perasaan seseorang dan dengarkan sepenuhnya", "Minggu 2 — Perhatikan bahasa tubuh & nada, bukan hanya kata", "Minggu 3 — Luangkan waktu menikmati satu hal indah dengan sengaja", "Minggu 4 — Refleksikan momen yang terasa paling bermakna"],
       },
     },
   ];
@@ -128,15 +159,34 @@
     computeScores: hspScores,
     getResult: function (scores) {
       const lv = hspLevel(scores);
+      const order = ["EOE", "LST", "AES"];
+
+      const dimensionInsights = order.map(function (d) {
+        const band = window.psiBand(scores[d]);
+        return {
+          name: HSP_DIMS[d].name, en: HSP_DIMS[d].en, pct: scores[d],
+          band: band.label, text: HSP_DIM_BANDS[d][band.key],
+        };
+      });
+
+      const sorted = order.slice().sort(function (a, b) { return scores[b] - scores[a]; });
+      const top = sorted[0];
+      const summary =
+        "Skor kepekaan totalmu " + scores.TOTAL + "%, menempatkanmu pada kategori '" + lv.name + "'. " +
+        "Aspek yang paling menonjol adalah " + HSP_DIMS[top].name + " (" + scores[top] + "%). " +
+        "Laporan di bawah menguraikan apa artinya bagi cara kerjamu, relasimu, dan kesejahteraanmu sehari-hari.";
+
       return {
         monogram: lv.monogram,
         name: lv.name,
         tagline: lv.tagline,
         desc: lv.desc + " Skor kepekaan totalmu: " + scores.TOTAL + "%.",
+        summary: summary,
         barsTitle: "Skor tiga aspek kepekaanmu",
-        bars: ["EOE", "LST", "AES"].map(function (d) {
+        bars: order.map(function (d) {
           return { name: HSP_DIMS[d].name, en: HSP_DIMS[d].en, pct: scores[d] };
         }),
+        dimensionInsights: dimensionInsights,
         premium: lv.premium,
       };
     },

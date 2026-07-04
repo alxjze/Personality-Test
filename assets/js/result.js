@@ -41,17 +41,41 @@
   const premium = result.premium;
   const fillList = function (id, items) {
     const el = document.getElementById(id);
+    if (!el) return;
     items.forEach(function (t) {
       const li = document.createElement("li");
       li.textContent = t;
       el.appendChild(li);
     });
   };
+  const setText = function (id, txt) { const el = document.getElementById(id); if (el && txt) el.textContent = txt; };
+
+  // Ringkasan personal (dihitung dari skor aktual).
+  setText("summary-text", result.summary);
+
+  // Profil per dimensi: kartu dengan band Tinggi/Sedang/Rendah + interpretasi.
+  const insightsEl = document.getElementById("dimension-insights");
+  if (insightsEl && result.dimensionInsights) {
+    result.dimensionInsights.forEach(function (ins) {
+      const cls = ins.band === "Tinggi" ? "high" : (ins.band === "Sedang" ? "med" : "low");
+      const div = document.createElement("div");
+      div.className = "insight";
+      div.innerHTML =
+        '<div class="insight-head"><span class="insight-name">' + ins.name + "</span>" +
+        '<span class="band-chip ' + cls + '">' + ins.band + " · " + ins.pct + '%</span></div>' +
+        '<p class="insight-text">' + ins.text + "</p>";
+      insightsEl.appendChild(div);
+    });
+  }
+
   fillList("strengths-list", premium.strengths);
   fillList("weaknesses-list", premium.weaknesses);
+  setText("workstyle-text", premium.workStyle);
   fillList("careers-list", premium.careers);
-  document.getElementById("relationship-text").textContent = premium.relationship;
-  fillList("tips-list", premium.tips);
+  setText("relationship-text", premium.relationship);
+  setText("communication-text", premium.communication);
+  setText("wellbeing-text", premium.wellbeing);
+  fillList("actionplan-list", premium.actionPlan || premium.tips);
 
   // Tautan checkout membawa id tes.
   const unlockBtn = document.getElementById("btn-unlock");
