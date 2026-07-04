@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Archives
+*.zip
+
+# Editor/OS junk
+Thumbs.db
+*.log
