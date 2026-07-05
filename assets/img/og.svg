@@ -12,8 +12,14 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
 
   <!-- logo mark + wordmark -->
-  <rect x="80" y="72" width="64" height="64" rx="14" fill="#1e5b3f"/>
-  <path d="M99 89h20c11 0 18.5 6.6 18.5 17.2S130 123.5 119 123.5h-9.5V140H99V89Zm10.5 9v16.5h8.6c5.2 0 8.8-3.2 8.8-8.2s-3.6-8.3-8.8-8.3H109.5Z" fill="#ffffff"/>
+  <g transform="translate(80,70) scale(0.68)">
+    <path d="M14 34 C34 36 48 52 44 76 C24 74 8 60 14 34 Z" fill="#7fa050"/>
+    <path d="M76 5 C92 30 84 60 49 68 C38 44 48 15 76 5 Z" fill="#2c5637"/>
+    <path d="M44 76 C44 82 47 88 53 92" fill="none" stroke="#7fa050" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 67 C48 78 52 87 62 93" fill="none" stroke="#2c5637" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M55 80 C52 58 58 30 74 12" fill="none" stroke="#f7f5ef" stroke-width="5" stroke-linecap="round"/>
+    <path d="M43 74 C37 60 28 48 17 40" fill="none" stroke="#f7f5ef" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
   <text x="164" y="121" font-family="'Plus Jakarta Sans', Segoe UI, sans-serif" font-size="34" font-weight="800" fill="#22302a">Psikologia<tspan fill="#1e5b3f">.id</tspan></text>
 
   <!-- headline -->

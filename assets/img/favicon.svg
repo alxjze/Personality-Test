@@ -1,4 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Psikologia.id">
-  <rect width="64" height="64" rx="14" fill="#1e5b3f"/>
-  <path d="M23 17h11.5c6.4 0 11 3.9 11 10.2 0 6.3-4.6 10.3-11 10.3H29v9.5h-6V17Zm6 5.4v9.7h5.1c3.1 0 5.2-1.9 5.2-4.9s-2.1-4.8-5.2-4.8H29Z" fill="#ffffff"/>
+  <defs>
+    <mask id="lv">
+      <rect width="64" height="64" fill="#fff"/>
+      <g transform="translate(3,3) scale(0.58)">
+        <path d="M55 80 C52 58 58 30 74 12" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round"/>
+        <path d="M43 74 C37 60 28 48 17 40" fill="none" stroke="#000" stroke-width="4.5" stroke-linecap="round"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#f4f1e9"/>
+  <g mask="url(#lv)" transform="translate(3,3) scale(0.58)">
+    <path d="M14 34 C34 36 48 52 44 76 C24 74 8 60 14 34 Z" fill="#7fa050"/>
+    <path d="M76 5 C92 30 84 60 49 68 C38 44 48 15 76 5 Z" fill="#2c5637"/>
+    <path d="M44 76 C44 82 47 88 53 92" fill="none" stroke="#7fa050" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 67 C48 78 52 87 62 93" fill="none" stroke="#2c5637" stroke-width="6.5" stroke-linecap="round"/>
+  </g>
 </svg>

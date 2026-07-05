@@ -51,8 +51,7 @@ header.site-header {
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
 .logo { display: inline-flex; align-items: center; font-size: 1.3rem; font-weight: 800; color: var(--ink); }
 .logo span { color: var(--primary); }
-.logo-mark { width: 30px; height: 30px; flex-shrink: 0; margin-right: 9px; }
-.logo-mark rect { fill: var(--primary); }
+.logo-mark { width: 32px; height: 32px; flex-shrink: 0; margin-right: 9px; }
 .nav-links { display: flex; gap: 28px; align-items: center; list-style: none; }
 .nav-links a { color: var(--ink-soft); font-weight: 600; font-size: .95rem; }
 .nav-links a:hover { color: var(--primary); }
