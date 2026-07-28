@@ -56,9 +56,27 @@ header.site-header {
 .nav-links a { color: var(--ink-soft); font-weight: 600; font-size: .95rem; }
 .nav-links a:hover { color: var(--primary); }
 @media (max-width: 720px) { .nav-links li:not(.nav-cta) { display: none; } }
+header.site-header { transition: box-shadow .25s ease, background .25s ease; }
+header.site-header.is-scrolled { box-shadow: 0 1px 16px rgba(20, 40, 30, .07); background: rgba(247, 245, 239, .96); }
 
 /* ===== Hero ===== */
-.hero { padding: 88px 0 72px; background: linear-gradient(170deg, #edf3ee 0%, var(--bg-warm) 65%); }
+.hero {
+  padding: 88px 0 72px; position: relative; overflow: hidden;
+  background: linear-gradient(170deg, #edf3ee 0%, var(--bg-warm) 65%);
+}
+.hero::before {
+  content: ""; position: absolute; top: -160px; right: -120px; width: 460px; height: 460px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(126, 163, 137, .22), transparent 68%);
+  pointer-events: none;
+}
+.hero .container { position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;
+  padding: 7px 16px 7px 12px; border-radius: 99px; background: var(--bg);
+  border: 1px solid var(--border); font-size: .82rem; font-weight: 700; color: var(--ink-soft);
+}
+.hero-badge b { color: var(--primary); font-weight: 800; }
+.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); flex-shrink: 0; }
 .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
 @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
 .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.12; font-weight: 800; }
@@ -163,6 +181,94 @@ footer.site-footer { padding: 44px 0; border-top: 1px solid var(--border); color
 .footer-links a { display: inline-block; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
 .footer-links a:hover { color: var(--primary-dark); }
 @media (max-width: 720px) { .footer-links { text-align: left; } }
+
+/* ===== Carousel ===== */
+.carousel { position: relative; }
+.carousel-viewport {
+  display: flex; gap: 24px; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: 2px;
+  padding: 6px 2px 12px; margin-inline: -2px;
+  scrollbar-width: none;
+}
+.carousel-viewport::-webkit-scrollbar { display: none; }
+.carousel-viewport:focus-visible { outline: 3px solid var(--sage); outline-offset: 4px; border-radius: var(--radius-lg); }
+.carousel-slide {
+  flex: 0 0 var(--slide, clamp(268px, 31%, 340px));
+  scroll-snap-align: start; display: flex;
+}
+.carousel-slide > .card { width: 100%; display: flex; flex-direction: column; }
+.carousel-slide > .card .card-cta { margin-top: auto; padding-top: 18px; }
+@media (max-width: 860px) { .carousel-slide { flex-basis: min(84%, 340px); } }
+
+.carousel-controls {
+  display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px;
+}
+.carousel.is-static .carousel-controls { display: none; }
+.carousel-btn {
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--primary);
+  display: grid; place-items: center;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease, opacity .2s ease;
+}
+.carousel-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+.carousel-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+.carousel-btn:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
+.carousel-btn:disabled { opacity: .35; cursor: not-allowed; }
+.carousel-dots { display: flex; align-items: center; gap: 6px; }
+.carousel-dot {
+  width: 24px; height: 24px; padding: 0; border: none; background: none; cursor: pointer;
+  display: grid; place-items: center;
+}
+.carousel-dot::before {
+  content: ""; width: 8px; height: 8px; border-radius: 99px; background: #cbd5cd;
+  transition: width .25s ease, background .25s ease;
+}
+.carousel-dot.is-active::before { width: 22px; background: var(--primary); }
+.carousel-dot:focus-visible { outline: 3px solid var(--sage); outline-offset: 1px; border-radius: 99px; }
+.carousel-status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+/* Kartu dimensi — huruf OCEAN besar sebagai penanda */
+.dimension-card { position: relative; overflow: hidden; }
+.dimension-card .dim-letter {
+  position: absolute; top: 6px; right: 16px; font-size: 4.6rem; font-weight: 800;
+  line-height: 1; color: var(--primary-light); letter-spacing: -0.04em; pointer-events: none;
+}
+.dimension-card h3, .dimension-card p, .dimension-card .icon { position: relative; }
+
+/* ===== Section eyebrow ===== */
+.section-eyebrow {
+  display: block; text-align: center; font-size: .74rem; font-weight: 800;
+  /* --primary, bukan --leaf: kontras 7.4:1 di atas latar krem (WCAG AA) */
+  letter-spacing: .14em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px;
+}
+
+/* ===== Hover & reveal ===== */
+.card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.cards .card:hover, .carousel-slide .card:hover {
+  transform: translateY(-4px); border-color: var(--sage);
+  box-shadow: 0 2px 4px rgba(20, 40, 30, .05), 0 16px 32px rgba(20, 40, 30, .1);
+}
+/* Disembunyikan hanya jika JS aktif (class .js dipasang di <head>), supaya
+   tanpa JS seluruh konten tetap terlihat. */
+.js [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+.js [data-reveal][data-reveal-delay="1"] { transition-delay: .08s; }
+.js [data-reveal][data-reveal-delay="2"] { transition-delay: .16s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .carousel-viewport { scroll-behavior: auto; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .btn:hover, .card:hover, .carousel-btn:hover:not(:disabled) { transform: none; }
+}
+
+/* Fokus keyboard yang konsisten */
+a:focus-visible, .btn:focus-visible, summary:focus-visible, button:focus-visible {
+  outline: 3px solid var(--sage); outline-offset: 3px; border-radius: 8px;
+}
 
 /* ===== Test Page ===== */
 .test-wrap { max-width: 680px; margin: 0 auto; padding: 52px 0 84px; }
