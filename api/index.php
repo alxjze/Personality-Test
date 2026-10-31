@@ -21,5 +21,17 @@ if (!getenv('LOG_CHANNEL')) {
 }
 
 $app = new App\App($root . '/backend');
+
+// Optional: apply pending migrations once per cold start (no shell on Vercel).
+// Idempotent; enable with AUTO_MIGRATE=true, disable after the schema is in place.
+if (getenv('AUTO_MIGRATE') === 'true' && !is_file('/tmp/psikologia-migrated')) {
+    try {
+        (new App\Core\Migrator($app->db, $root . '/backend/database/migrations'))->migrate();
+        @touch('/tmp/psikologia-migrated');
+    } catch (\Throwable $e) {
+        $app->logger->error('Auto-migrate failed', ['message' => $e->getMessage()]);
+    }
+}
+
 $request = App\Core\Request::fromGlobals($app->config);
 $app->handle($request)->send();

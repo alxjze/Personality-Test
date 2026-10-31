@@ -116,7 +116,7 @@ Environment variables di Vercel: `APP_ENV=production`, `APP_URL`, `DB_HOST`, `DB
 `SESSION_SECURE_COOKIE=true`, `CV_STORE_FILES=false`, `LOG_CHANNEL=stderr`, `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`,
 `OPS_TOKEN` (sementara, untuk migrasi).
 
-Migrasi pertama: `curl -X POST https://<project>.vercel.app/api/ops/migrate -H "X-Ops-Token: $OPS_TOKEN"`, lalu hapus `OPS_TOKEN`.
+Migrasi pertama: set `AUTO_MIGRATE=true` (migrasi tertunda dijalankan sekali per cold start, aman diulang), **atau** `curl -X POST https://<project>.vercel.app/api/ops/migrate -H "X-Ops-Token: $OPS_TOKEN"` lalu hapus `OPS_TOKEN`.
 
 ---
 
