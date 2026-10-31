@@ -6,22 +6,40 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.4",
-      "includeFiles": "backend/{src,database}/**",
-      "maxDuration": 60
+      "maxDuration": 60,
+      "excludeFiles": "{frontend/**,assets/**,docs/**,deploy/**,scripts/**,build/**,backend/tests/**,backend/vendor/**,backend/storage/**,backend/public/**,*.html,*.md}"
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.php" },
-    { "source": "/((?!api/|assets/|favicon\\.svg|robots\\.txt).*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.php"
+    },
+    {
+      "source": "/((?!api/|assets/|favicon\\.svg|robots\\.txt).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]

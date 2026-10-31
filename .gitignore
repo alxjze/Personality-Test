@@ -11,3 +11,6 @@ Thumbs.db
 # Psikologia Career
 build/
 .vercel/
+
+# Root-level Vercel build artifacts
+/vendor/

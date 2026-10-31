@@ -3,5 +3,7 @@ backend/storage
 backend/tests
 backend/.env
 frontend/node_modules
-frontend/e2e/screenshots
+frontend/dist
+frontend/e2e
 build
+vendor

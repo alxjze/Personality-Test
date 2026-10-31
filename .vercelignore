@@ -1,0 +1,9 @@
+backend/vendor
+backend/storage
+backend/tests
+backend/.env
+frontend/node_modules
+frontend/dist
+frontend/e2e
+build
+vendor
