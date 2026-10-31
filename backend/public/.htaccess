@@ -1,0 +1,12 @@
+# Route every /api/* request to index.php (Apache / LiteSpeed on Hostinger)
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+# Never serve dotfiles (e.g. .env if misplaced)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,11 @@
+*
+!.gitignore
+!logs/
+!sessions/
+!cv/
+logs/*
+sessions/*
+cv/*
+!logs/.gitkeep
+!sessions/.gitkeep
+!cv/.gitkeep

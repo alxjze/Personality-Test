@@ -7,3 +7,7 @@
 # Editor/OS junk
 Thumbs.db
 *.log
+
+# Psikologia Career
+build/
+.vercel/
