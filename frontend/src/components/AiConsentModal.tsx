@@ -24,7 +24,7 @@ export function AiConsentModal({ open, onClose, onAccept }: { open: boolean; onC
       <p>Untuk memberikan jawaban dan umpan balik, teks yang kamu kirim (beserta ringkasan hasil refleksi dan profil karier jika ada) akan diproses oleh penyedia layanan AI pihak ketiga melalui server kami.</p>
       <ul className="mt-3 list-disc space-y-1 pl-5">
         <li>Jangan menuliskan data sensitif seperti NIK, nomor rekening, atau informasi kesehatan.</li>
-        <li>Data tidak digunakan untuk tujuan lain tanpa persetujuanmu.</li>
+        <li>Kami tidak menggunakan datamu untuk tujuan lain tanpa persetujuanmu. Jika layanan memakai paket AI gratis, penyedia AI dapat menggunakan data yang dikirim untuk meningkatkan layanannya.</li>
         <li>Kamu dapat mencabut persetujuan dan menghapus datamu kapan saja di halaman Profil.</li>
       </ul>
       <div className="mt-4">

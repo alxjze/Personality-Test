@@ -27,7 +27,7 @@ Browser (React SPA)  ──HTTPS──▶  psikologia.id/            file statis
 | Sesi | Disimpan di tabel `sessions` (ID di-hash SHA-256) | Berfungsi di shared hosting dan platform serverless (Vercel) |
 | Password | `password_hash` Argon2id (fallback bcrypt) | Standar PHP |
 | Laporan refleksi | Berbasis aturan (deterministik), **tanpa AI** | Tetap berfungsi tanpa API key, hasil bisa direproduksi, dan tidak ada data refleksi yang dikirim ke pihak ketiga |
-| AI | Interface `AiProvider` → `OpenAiProvider` (cURL), `AnthropicProvider` (SDK resmi), `MockProvider` | Penyedia bisa diganti lewat `AI_PROVIDER` |
+| AI | Interface `AiProvider` → `OpenAiProvider` (cURL; juga melayani Gemini & Groq gratis via endpoint kompatibel OpenAI), `AnthropicProvider` (SDK resmi), `MockProvider` | Penyedia bisa diganti lewat `AI_PROVIDER`; default gratis yang disarankan: `gemini` |
 | Mock AI | Selalu diberi tanda `simulated: true` + label “Simulasi” di UI | Tidak pernah tampil seolah-olah hasil AI |
 | PDF | `smalot/pdfparser` (PHP murni) | Tanpa ekstensi atau binary tambahan |
 | Rate limit | Fixed window di tabel `rate_limits` | Tanpa Redis |

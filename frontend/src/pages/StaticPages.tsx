@@ -34,6 +34,7 @@ export function PrivacyPage() {
         <section>
           <h2>Penggunaan penyedia layanan AI</h2>
           <p>Fitur AI Career Assistant, CV Reviewer, dan Persiapan Interview mengirim teks yang relevan ke penyedia model AI pihak ketiga melalui server kami. Kami selalu meminta persetujuan eksplisit sebelum data dikirim, dan persetujuan CV diminta setiap kali analisis. Laporan Refleksi Karier disusun dengan aturan di server kami sendiri dan <strong>tidak</strong> dikirim ke AI. Jika layanan AI belum dikonfigurasi, respons ditandai “Simulasi” dan tidak ada data yang dikirim ke pihak ketiga.</p>
+          <p className="mt-2">Saat ini layanan dapat memakai <strong>paket gratis</strong> penyedia AI (mis. Google Gemini atau Groq). Pada paket gratis, penyedia tersebut dapat menyimpan dan menggunakan data yang dikirim untuk meningkatkan layanannya sesuai kebijakan mereka. Karena itu, hindari mencantumkan data sensitif seperti NIK, nomor rekening, atau alamat lengkap di CV dan percakapan.</p>
         </section>
         <section>
           <h2>Penyimpanan & retensi</h2>

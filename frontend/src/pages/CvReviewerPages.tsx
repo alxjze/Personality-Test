@@ -314,7 +314,7 @@ export function CvReviewerPage() {
 
           <div className="rounded-xl bg-surface p-4">
             <Checkbox checked={consent} onChange={setConsent} error={fieldErr('consent')}>
-              Saya menyetujui CV dan deskripsi pekerjaan ini dikirim ke penyedia layanan AI untuk dianalisis. CV tidak digunakan untuk tujuan lain dan dapat saya hapus kapan saja. <Link to="/privasi" target="_blank" className="font-semibold text-primary underline">Pelajari</Link>
+              Saya menyetujui CV dan deskripsi pekerjaan ini dikirim ke penyedia layanan AI untuk dianalisis. CV tidak kami gunakan untuk tujuan lain dan dapat saya hapus kapan saja. Saya memahami bahwa pada paket AI gratis, penyedia AI dapat memakai data untuk meningkatkan layanannya, sehingga saya tidak mencantumkan data sensitif (NIK, alamat lengkap). <Link to="/privasi" target="_blank" className="font-semibold text-primary underline">Pelajari</Link>
             </Checkbox>
           </div>
 

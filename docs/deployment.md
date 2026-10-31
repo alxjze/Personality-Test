@@ -60,9 +60,9 @@ API base URL tidak perlu dikonfigurasi: frontend memanggil `/api` pada domain ya
    DB_USERNAME=u728262898_xxxxx
    DB_PASSWORD=********
    SESSION_SECURE_COOKIE=true
-   AI_PROVIDER=anthropic        # atau openai, atau mock
+   AI_PROVIDER=gemini           # gratis (Google AI Studio); atau groq, anthropic, openai, mock
    AI_API_KEY=********
-   AI_MODEL=                    # kosong = default penyedia (anthropic: claude-opus-5-5)
+   AI_MODEL=                    # kosong = default penyedia (gemini: gemini-2.5-flash)
    MAIL_DRIVER=mail
    ```
 3. Permission: folder `psikologia-app/storage` dan subfoldernya `755` (bisa ditulis oleh user PHP), file `.env` `600`.

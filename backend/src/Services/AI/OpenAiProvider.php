@@ -7,7 +7,9 @@ namespace App\Services\AI;
 use App\Core\Logger;
 
 /**
- * OpenAI Chat Completions over HTTPS (cURL). Also works with OpenAI-compatible gateways via AI_BASE_URL.
+ * OpenAI Chat Completions over HTTPS (cURL).
+ * Also serves OpenAI-compatible providers with free tiers (Google Gemini, Groq) via their
+ * compatibility endpoints — see AiProviderFactory.
  */
 final class OpenAiProvider implements AiProvider
 {
@@ -18,12 +20,14 @@ final class OpenAiProvider implements AiProvider
         private readonly int $maxTokens,
         private readonly string $baseUrl,
         private readonly Logger $logger,
+        private readonly string $providerName = 'openai',
+        private readonly bool $compat = false,
     ) {
     }
 
     public function name(): string
     {
-        return 'openai';
+        return $this->providerName;
     }
 
     public function isSimulated(): bool
@@ -36,10 +40,16 @@ final class OpenAiProvider implements AiProvider
         $payload = [
             'model' => $this->model,
             'messages' => array_merge([['role' => 'system', 'content' => $system]], $messages),
-            'max_completion_tokens' => (int) ($options['max_tokens'] ?? $this->maxTokens),
         ];
-        if (!empty($options['json'])) {
-            $payload['response_format'] = ['type' => 'json_object'];
+        $max = (int) ($options['max_tokens'] ?? $this->maxTokens);
+        if ($this->compat) {
+            // Compatibility endpoints use the classic parameter; JSON is enforced by the prompt + JsonOutput.
+            $payload['max_tokens'] = $max;
+        } else {
+            $payload['max_completion_tokens'] = $max;
+            if (!empty($options['json'])) {
+                $payload['response_format'] = ['type' => 'json_object'];
+            }
         }
         $url = rtrim($this->baseUrl !== '' ? $this->baseUrl : 'https://api.openai.com/v1', '/') . '/chat/completions';
 
@@ -61,20 +71,20 @@ final class OpenAiProvider implements AiProvider
         curl_close($ch);
 
         if ($body === false) {
-            $this->logger->error('OpenAI connection error', ['error' => $err, 'feature' => $options['feature'] ?? null]);
+            $this->logger->error('AI connection error', ['error' => $err, 'feature' => $options['feature'] ?? null]);
             throw new AiException();
         }
         $data = json_decode((string) $body, true);
         if ($status === 429) {
-            $this->logger->warning('OpenAI rate limited', ['feature' => $options['feature'] ?? null]);
+            $this->logger->warning('AI provider rate limited', ['feature' => $options['feature'] ?? null]);
             throw AiException::busy();
         }
         if ($status === 401 || $status === 403) {
-            $this->logger->error('OpenAI auth error', ['status' => $status]);
+            $this->logger->error('AI provider auth error', ['status' => $status]);
             throw AiException::misconfigured();
         }
         if ($status >= 400 || !is_array($data)) {
-            $this->logger->error('OpenAI API error', ['status' => $status, 'type' => $data['error']['type'] ?? null, 'code' => $data['error']['code'] ?? null]);
+            $this->logger->error('AI provider API error', ['provider' => $this->providerName, 'status' => $status, 'type' => is_array($data) ? ($data['error']['type'] ?? $data[0]['error']['status'] ?? null) : null, 'code' => is_array($data) ? ($data['error']['code'] ?? $data[0]['error']['code'] ?? null) : null]);
             throw new AiException();
         }
         $choice = $data['choices'][0] ?? [];
@@ -85,6 +95,6 @@ final class OpenAiProvider implements AiProvider
         if (trim($text) === '') {
             throw AiException::badOutput();
         }
-        return new AiResult($text, 'openai', (string) ($data['model'] ?? $this->model), false);
+        return new AiResult($text, $this->providerName, (string) ($data['model'] ?? $this->model), false);
     }
 }

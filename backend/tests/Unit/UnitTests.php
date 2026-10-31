@@ -112,7 +112,7 @@ final class UnitTests extends TestCase
         $it = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dist, \FilesystemIterator::SKIP_DOTS));
         foreach ($it as $file) {
             $content = (string) file_get_contents($file->getPathname());
-            $this->assertDoesNotMatchRegularExpression('/AI_API_KEY|sk-ant-|sk-proj-|api\.anthropic\.com|api\.openai\.com/', $content, $file->getPathname());
+            $this->assertDoesNotMatchRegularExpression('/AI_API_KEY|sk-ant-|sk-proj-|AIza[0-9A-Za-z_-]{20,}|gsk_[0-9A-Za-z]{20,}|api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis\.com|api\.groq\.com/', $content, $file->getPathname());
         }
     }
 }

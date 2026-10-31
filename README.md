@@ -21,7 +21,7 @@ PHP 8.2+ REST API (tanpa framework)  ─┘
    ├─ MySQL/MariaDB via PDO (prepared statements)
    ├─ Sesi di database + cookie HttpOnly/SameSite=Lax + token CSRF
    ├─ Penyimpanan CV privat di luar public_html
-   └─ Lapisan AI: AiProvider → OpenAI | Anthropic | Mock (berlabel “Simulasi”)
+   └─ Lapisan AI: AiProvider → Gemini/Groq (gratis) | OpenAI | Anthropic | Mock (berlabel “Simulasi”)
 ```
 
 Tidak membutuhkan Node.js di production, sehingga kompatibel dengan Hostinger Web Hosting. Detail lengkap dan keputusan teknis ada di
@@ -59,7 +59,7 @@ docs/       architecture.md, database.md, api.md, deployment.md, user-guide.md
 
 ## 4. Fitur yang masih membutuhkan konfigurasi
 
-* **AI sungguhan** — isi `AI_PROVIDER` (`anthropic`/`openai`), `AI_API_KEY`, dan opsional `AI_MODEL`. Tanpa itu, respons berlabel **Simulasi**.
+* **AI sungguhan** — gratis: `AI_PROVIDER=gemini` + `AI_API_KEY` dari [Google AI Studio](https://aistudio.google.com/apikey) (tanpa kartu kredit), atau `AI_PROVIDER=groq`. Berbayar: `anthropic`/`openai`. Opsional `AI_MODEL`. Tanpa key, respons berlabel **Simulasi**.
 * **Email reset password** — `MAIL_DRIVER=mail` dan akun email `no-reply@psikologia.id` di Hostinger. Di dev, tautan ditulis ke `backend/storage/logs/`.
 * **Database & domain production** — lihat [docs/deployment.md](docs/deployment.md).
 
