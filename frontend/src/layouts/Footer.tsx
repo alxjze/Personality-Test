@@ -3,7 +3,7 @@ import { Logo } from '@/components/ui/Logo';
 
 export function Footer() {
   return (
-    <footer className="no-print mt-20 border-t border-slate-200 bg-white">
+    <footer className="no-print mt-20 border-t border-slate-200 bg-white [main:has(>section.bg-navy:last-child)+&]:mt-0">
       <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
           <Logo />

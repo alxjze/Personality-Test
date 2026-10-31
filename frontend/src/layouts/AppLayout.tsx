@@ -2,9 +2,11 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { useReveal } from '@/hooks/useReveal';
 
 export function AppLayout() {
   const { pathname } = useLocation();
+  useReveal();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -14,7 +16,7 @@ export function AppLayout() {
         Lewati ke konten
       </a>
       <Navbar />
-      <main id="main" className="flex-1">
+      <main id="main" className="flex-1 overflow-x-clip">
         <Outlet />
       </main>
       <Footer />

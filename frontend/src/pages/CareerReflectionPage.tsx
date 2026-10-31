@@ -19,33 +19,33 @@ interface Draft {
 
 function LikertScale({ q, value, options, onChange, invalid }: { q: ReflectionQuestion; value?: number; options: LikertOption[]; onChange: (v: number) => void; invalid: boolean }) {
   return (
-    <fieldset className={cn('rounded-2xl border bg-white p-4 sm:p-5', invalid ? 'border-red-300' : 'border-slate-200')}>
+    <fieldset
+      className={cn(
+        'group rounded-2xl bg-white px-4 py-4 ring-1 transition sm:flex sm:items-center sm:justify-between sm:gap-6 sm:px-5',
+        invalid ? 'ring-red-300' : value ? 'ring-primary/20' : 'ring-slate-900/[0.06] hover:ring-primary/25',
+      )}
+    >
       <legend className="sr-only">{q.text}</legend>
-      <p className="text-sm font-semibold leading-relaxed text-navy sm:text-base" aria-hidden>{q.text}</p>
-      <div role="radiogroup" aria-label={q.text} className="mt-4 grid grid-cols-5 gap-2">
+      <p className="text-sm font-semibold leading-relaxed text-navy sm:max-w-[60%]" aria-hidden>{q.text}</p>
+      <div role="radiogroup" aria-label={q.text} className="mt-3 flex shrink-0 items-center justify-between gap-2 sm:mt-0 sm:justify-end">
         {options.map((o) => {
           const active = value === o.value;
           return (
-            <label key={o.value} className="flex cursor-pointer flex-col items-center gap-1.5">
+            <label key={o.value} className="cursor-pointer" title={o.label}>
               <input type="radio" className="peer sr-only" name={q.id} value={o.value} checked={active} onChange={() => onChange(o.value)} aria-label={`${o.value} — ${o.label}`} />
               <span
                 className={cn(
-                  'grid h-10 w-10 place-items-center rounded-full border-2 text-sm font-bold transition peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 sm:h-11 sm:w-11',
-                  active ? 'border-primary bg-primary text-white' : 'border-slate-200 text-ink hover:border-primary/50',
+                  'grid h-10 w-10 place-items-center rounded-full text-sm font-bold transition duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 sm:h-9 sm:w-9',
+                  active ? 'scale-110 bg-primary text-white shadow-glow' : 'bg-surface text-ink ring-1 ring-slate-200 hover:bg-primary-50 hover:text-primary hover:ring-primary/30',
                 )}
               >
                 {o.value}
               </span>
-              <span className="hidden text-center text-[11px] leading-tight text-muted sm:block">{o.label}</span>
             </label>
           );
         })}
       </div>
-      <div className="mt-2 flex justify-between text-[11px] text-muted sm:hidden">
-        <span>{options[0]?.label}</span>
-        <span>{options[options.length - 1]?.label}</span>
-      </div>
-      {invalid && <p className="field-error">Pertanyaan ini wajib dijawab.</p>}
+      {invalid && <p className="field-error sm:hidden">Pertanyaan ini wajib dijawab.</p>}
     </fieldset>
   );
 }
@@ -197,9 +197,14 @@ export default function CareerReflectionPage() {
         </div>
       </div>
 
-      <p className="mb-4 text-sm text-muted">{category.description}</p>
+      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <p className="text-sm text-muted">{category.description}</p>
+        {category.questions.some((q) => q.type === 'likert') && (
+          <p className="shrink-0 text-xs font-medium text-muted"><span className="font-bold text-navy">1</span> {qn.likert[0]?.label} · <span className="font-bold text-navy">5</span> {qn.likert[qn.likert.length - 1]?.label}</p>
+        )}
+      </div>
 
-      <div className="space-y-4">
+      <div key={category.id} className="animate-fade-up space-y-3">
         {category.questions.map((q) => {
           const invalid = showErrors && q.required && (answers[q.id] === undefined || answers[q.id] === '');
           const serverErr = submitError?.fields[q.id];

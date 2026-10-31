@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/utils/format';
 
 const links = [
-  { to: '/career-reflection', label: 'Refleksi Karier' },
+  { to: '/career-reflection', label: 'Eksplorasi Karier' },
   { to: '/career-assistant', label: 'AI Assistant' },
   { to: '/cv-reviewer', label: 'CV Reviewer' },
   { to: '/interview-preparation', label: 'Persiapan Interview' },
@@ -40,14 +40,17 @@ export function Navbar() {
   };
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
-    cn('rounded-lg px-3 py-2 text-sm font-semibold transition', isActive ? 'text-primary' : 'text-ink hover:text-primary');
+    cn(
+      'relative rounded-lg px-3 py-2 text-sm font-semibold transition after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-primary after:transition-transform after:duration-300',
+      isActive ? 'text-navy after:scale-x-100' : 'text-ink/80 after:scale-x-0 hover:text-primary hover:after:scale-x-100',
+    );
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-slate-200/70 bg-white/85 backdrop-blur">
+    <header className="no-print sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur-md">
       <nav className="container-page flex h-16 items-center justify-between gap-4" aria-label="Navigasi utama">
         <Logo />
         <div className="hidden items-center gap-1 lg:flex">
-          {user && <NavLink to="/dashboard" className={navClass}>Dashboard</NavLink>}
+          <NavLink to={user ? '/dashboard' : '/'} end className={navClass}>{user ? 'Dashboard' : 'Beranda'}</NavLink>
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} className={navClass}>{l.label}</NavLink>
           ))}
@@ -88,7 +91,7 @@ export function Navbar() {
       {open && (
         <div id="mobile-nav" className="border-t border-slate-200 bg-white lg:hidden">
           <div className="container-page flex flex-col gap-1 py-3">
-            {user && <NavLink to="/dashboard" className={navClass}>Dashboard</NavLink>}
+            <NavLink to={user ? '/dashboard' : '/'} end className={navClass}>{user ? 'Dashboard' : 'Beranda'}</NavLink>
             {links.map((l) => (
               <NavLink key={l.to} to={l.to} className={navClass}>{l.label}</NavLink>
             ))}

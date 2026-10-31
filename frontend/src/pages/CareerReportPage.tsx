@@ -24,11 +24,18 @@ import { useAuth } from '@/hooks/useAuth';
 import { useDocumentTitle } from '@/hooks/useAsync';
 import { api, ApiError } from '@/services/api';
 import type { ReflectionListItem, ReflectionResult, SavedReflection } from '@/types';
-import { formatDate, storage, STORAGE_KEYS } from '@/utils/format';
+import { cn, formatDate, storage, STORAGE_KEYS } from '@/utils/format';
+import { SummitIllustration } from '@/components/Illustrations';
+
+const TAG_TONES = [
+  { bg: 'bg-tag-violetBg', text: 'text-tag-violet' },
+  { bg: 'bg-tag-blueBg', text: 'text-tag-blue' },
+  { bg: 'bg-tag-orangeBg', text: 'text-tag-orange' },
+];
 
 function Section({ icon, title, children, className = '' }: { icon: React.ReactNode; title: string; children: React.ReactNode; className?: string }) {
   return (
-    <section className={`card p-6 ${className}`}>
+    <section className={`card p-6 sm:p-7 ${className}`} data-reveal>
       <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
         <span className="text-primary">{icon}</span>
         {title}
@@ -54,17 +61,31 @@ function ScoreRow({ label, score, description }: { label: string; score: number;
 export function ReportView({ result }: { result: ReflectionResult }) {
   return (
     <div className="space-y-6">
-      <div className="card overflow-hidden">
-        <div className="bg-gradient-to-br from-primary to-navy p-6 text-white sm:p-8">
-          <p className="text-sm font-semibold text-white/80">Gambaran umum dirimu</p>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed sm:text-lg">{result.summary}</p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {result.tags.map((t) => (
-              <span key={t} className="chip bg-white/15 text-white ring-1 ring-white/25">{t}</span>
-            ))}
+      <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+        <section className="card p-6 sm:p-7" data-reveal>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+            <SummitIllustration className="h-28 w-36 shrink-0" />
+            <div>
+              <h2 className="text-lg font-bold">Gambaran umum dirimu</h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink sm:text-[15px]">{result.summary}</p>
+            </div>
           </div>
-        </div>
-        <p className="px-6 py-3 text-xs leading-relaxed text-muted">{result.disclaimer}</p>
+          <p className="mt-5 rounded-2xl bg-surface px-4 py-3 text-xs leading-relaxed text-muted">{result.disclaimer}</p>
+        </section>
+        <section className="card p-6 sm:p-7" data-reveal data-reveal-delay="100">
+          <h2 className="text-lg font-bold">Kecenderungan karier</h2>
+          <ul className="mt-4 space-y-2.5">
+            {result.career_areas.map((a, i) => (
+              <li key={a.id} className={cn('flex items-center justify-between gap-3 rounded-2xl px-4 py-3', TAG_TONES[i % TAG_TONES.length].bg)}>
+                <span className={cn('flex items-center gap-2 text-sm font-bold', TAG_TONES[i % TAG_TONES.length].text)}>
+                  <Sparkles className="h-4 w-4" aria-hidden />{a.name}
+                </span>
+                <span className={cn('text-xs font-bold', TAG_TONES[i % TAG_TONES.length].text)}>{a.score}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-muted">Fokus 6–12 bulan: <strong className="text-navy">{result.goal.focus_label}</strong></p>
+        </section>
       </div>
 
       <Section icon={<Compass className="h-5 w-5" />} title="Area karier yang dapat dieksplorasi">

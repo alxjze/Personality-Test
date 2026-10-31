@@ -7,10 +7,10 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'soft' | 'white' |
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
+  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
 const variants: Record<Variant, string> = {
-  primary: 'bg-primary text-white shadow-sm hover:bg-primary-700',
-  secondary: 'border border-slate-300 bg-white text-navy hover:border-primary/40 hover:bg-primary-50',
+  primary: 'bg-primary text-white shadow-glow hover:-translate-y-0.5 hover:bg-primary-700',
+  secondary: 'border border-slate-200 bg-white text-navy shadow-sm hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary',
   ghost: 'text-navy hover:bg-primary-50',
   danger: 'bg-red-600 text-white hover:bg-red-700',
   soft: 'bg-primary-50 text-primary hover:bg-primary-100',
@@ -20,7 +20,7 @@ const variants: Record<Variant, string> = {
 const sizes: Record<Size, string> = {
   sm: 'px-3 py-1.5 text-sm',
   md: 'px-4 py-2.5 text-sm',
-  lg: 'px-6 py-3 text-base',
+  lg: 'px-6 py-3.5 text-base',
 };
 
 export function buttonClass(variant: Variant = 'primary', size: Size = 'md', extra?: string) {
