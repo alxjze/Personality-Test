@@ -41,15 +41,15 @@ export function Navbar() {
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'relative rounded-lg px-3 py-2 text-sm font-semibold transition after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-primary after:transition-transform after:duration-300',
-      isActive ? 'text-navy after:scale-x-100' : 'text-ink/80 after:scale-x-0 hover:text-primary hover:after:scale-x-100',
+      'relative py-2 text-[13px] font-bold transition-colors after:absolute after:inset-x-0 after:-bottom-[10px] after:h-[3px] after:origin-left after:rounded-full after:bg-primary after:transition-transform after:duration-300 lg:py-0',
+      isActive ? 'text-primary after:scale-x-100' : 'text-[#33415f] after:scale-x-0 hover:text-primary',
     );
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur-md">
-      <nav className="container-page flex h-16 items-center justify-between gap-4" aria-label="Navigasi utama">
+    <header className="no-print sticky top-0 z-40 border-b border-[rgba(202,220,247,.72)] bg-white/[.88] backdrop-blur-[18px]">
+      <nav className="mx-auto flex h-16 w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6 lg:h-[72px] lg:w-[min(1240px,calc(100%-48px))]" aria-label="Navigasi utama">
         <Logo />
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="mx-auto hidden items-center gap-[clamp(20px,3vw,40px)] lg:flex">
           <NavLink to={user ? '/dashboard' : '/'} end className={navClass}>{user ? 'Dashboard' : 'Beranda'}</NavLink>
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} className={navClass}>{l.label}</NavLink>
@@ -61,7 +61,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMenu((m) => !m)}
-                className="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-navy hover:bg-primary-50"
+                className="flex items-center gap-2 rounded-[13px] border border-[#cadcf8] bg-white px-3 py-2 text-[13px] font-bold text-navy hover:text-primary"
                 aria-expanded={menu}
                 aria-haspopup="menu"
               >
@@ -79,8 +79,8 @@ export function Navbar() {
             </div>
           ) : (
             <>
-              <Link to="/login" className={buttonClass('secondary', 'sm')}>Masuk</Link>
-              <Link to="/register" className={buttonClass('primary', 'sm')}>Daftar</Link>
+              <Link to="/login" className={buttonClass('secondary', 'md', 'text-[13px]')}>Masuk</Link>
+              <Link to="/register" className={buttonClass('primary', 'md', 'text-[13px]')}>Daftar Gratis</Link>
             </>
           )}
         </div>
@@ -89,8 +89,8 @@ export function Navbar() {
         </button>
       </nav>
       {open && (
-        <div id="mobile-nav" className="border-t border-slate-200 bg-white lg:hidden">
-          <div className="container-page flex flex-col gap-1 py-3">
+        <div id="mobile-nav" className="mx-4 mb-3 rounded-2xl border border-line bg-white shadow-[0_18px_45px_rgba(28,82,164,.10)] lg:hidden">
+          <div className="flex flex-col px-4 py-3 [&>a]:py-3 [&>a]:text-sm">
             <NavLink to={user ? '/dashboard' : '/'} end className={navClass}>{user ? 'Dashboard' : 'Beranda'}</NavLink>
             {links.map((l) => (
               <NavLink key={l.to} to={l.to} className={navClass}>{l.label}</NavLink>

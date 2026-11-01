@@ -13,7 +13,7 @@ export function HeroPerson({ className = '' }: { className?: string }) {
         </linearGradient>
         <linearGradient id="hp-shirt" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#2A6DF4" />
-          <stop offset="1" stopColor="#155EEF" />
+          <stop offset="1" stopColor="#1467ED" />
         </linearGradient>
         <clipPath id="hp-clip">
           <path d="M40 470 V215 a180 180 0 0 1 360 0 V470 Z" />
@@ -33,13 +33,13 @@ export function HeroPerson({ className = '' }: { className?: string }) {
         <ellipse cx="220" cy="222" rx="60" ry="70" fill="#F3C7A6" />
         <ellipse cx="160" cy="232" rx="11" ry="16" fill="#EDB993" />
         {/* hair */}
-        <path d="M156 214 C150 160 186 132 226 134 C268 136 292 164 286 206 C280 186 266 176 250 172 C238 186 210 192 184 186 C174 196 166 206 162 226 Z" fill="#102A56" />
+        <path d="M156 214 C150 160 186 132 226 134 C268 136 292 164 286 206 C280 186 266 176 250 172 C238 186 210 192 184 186 C174 196 166 206 162 226 Z" fill="#101D42" />
         <path d="M196 150 C214 132 250 132 266 150 C252 146 236 148 222 156 Z" fill="#1C3A70" />
         {/* brows + eyes (looking up, thinking) */}
-        <path d="M190 204 q12 -8 24 -2" stroke="#102A56" strokeWidth="4" strokeLinecap="round" fill="none" />
-        <path d="M232 202 q12 -6 24 2" stroke="#102A56" strokeWidth="4" strokeLinecap="round" fill="none" />
-        <ellipse cx="203" cy="218" rx="5" ry="6" fill="#102A56" />
-        <ellipse cx="244" cy="217" rx="5" ry="6" fill="#102A56" />
+        <path d="M190 204 q12 -8 24 -2" stroke="#101D42" strokeWidth="4" strokeLinecap="round" fill="none" />
+        <path d="M232 202 q12 -6 24 2" stroke="#101D42" strokeWidth="4" strokeLinecap="round" fill="none" />
+        <ellipse cx="203" cy="218" rx="5" ry="6" fill="#101D42" />
+        <ellipse cx="244" cy="217" rx="5" ry="6" fill="#101D42" />
         <circle cx="205" cy="215" r="1.6" fill="#fff" />
         <circle cx="246" cy="214" r="1.6" fill="#fff" />
         {/* nose + smile */}
@@ -52,12 +52,12 @@ export function HeroPerson({ className = '' }: { className?: string }) {
         <path d="M238 298 q12 -5 24 -1" stroke="#E2A984" strokeWidth="3" strokeLinecap="round" fill="none" />
       </g>
       {/* thinking sparks */}
-      <g stroke="#155EEF" strokeWidth="7" strokeLinecap="round">
+      <g stroke="#1467ED" strokeWidth="7" strokeLinecap="round">
         <path d="M330 92 l18 -22" />
         <path d="M352 120 l26 -6" />
         <path d="M318 70 l2 -26" />
       </g>
-      <g stroke="#67B7FF" strokeWidth="5" strokeLinecap="round">
+      <g stroke="#32A5FF" strokeWidth="5" strokeLinecap="round">
         <path d="M72 120 l-16 -10" />
         <path d="M66 150 h-20" />
       </g>
@@ -70,35 +70,12 @@ export function SummitIllustration({ className = '' }: { className?: string }) {
     <svg viewBox="0 0 160 120" className={className} role="img" aria-label="Ilustrasi puncak gunung dengan bendera">
       <rect width="160" height="120" rx="20" fill="#EAF2FF" />
       <circle cx="122" cy="30" r="12" fill="#D6E6FF" />
-      <path d="M8 112 L58 46 L82 76 L102 52 L152 112 Z" fill="#67B7FF" />
+      <path d="M8 112 L58 46 L82 76 L102 52 L152 112 Z" fill="#32A5FF" />
       <path d="M58 46 L72 64 L62 62 L54 72 L48 60 Z" fill="#FFFFFF" />
-      <path d="M8 112 L58 46 L70 112 Z" fill="#155EEF" opacity=".85" />
-      <path d="M102 52 L152 112 L96 112 Z" fill="#102A56" opacity=".55" />
-      <path d="M58 46 V18" stroke="#102A56" strokeWidth="3" strokeLinecap="round" />
+      <path d="M8 112 L58 46 L70 112 Z" fill="#1467ED" opacity=".85" />
+      <path d="M102 52 L152 112 L96 112 Z" fill="#101D42" opacity=".55" />
+      <path d="M58 46 V18" stroke="#101D42" strokeWidth="3" strokeLinecap="round" />
       <path d="M58 18 L80 25 L58 32 Z" fill="#F5B83D" />
-    </svg>
-  );
-}
-
-export function DeskIllustration({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 320 200" className={className} role="img" aria-label="Ilustrasi meja belajar dengan laptop, buku, dan cangkir">
-      <ellipse cx="160" cy="186" rx="150" ry="10" fill="#0B1E40" opacity=".35" />
-      {/* books */}
-      <rect x="226" y="150" width="76" height="16" rx="3" fill="#F5B83D" />
-      <rect x="232" y="136" width="66" height="14" rx="3" fill="#FFFFFF" />
-      <rect x="222" y="166" width="84" height="16" rx="3" fill="#67B7FF" />
-      {/* laptop */}
-      <path d="M70 60 h150 a8 8 0 0 1 8 8 v92 h-166 v-92 a8 8 0 0 1 8 -8 Z" fill="#E8EEF8" />
-      <rect x="74" y="66" width="150" height="88" rx="4" fill="#102A56" />
-      <rect x="86" y="80" width="70" height="8" rx="4" fill="#67B7FF" />
-      <rect x="86" y="96" width="110" height="6" rx="3" fill="#2E4C80" />
-      <rect x="86" y="108" width="96" height="6" rx="3" fill="#2E4C80" />
-      <rect x="86" y="124" width="44" height="18" rx="6" fill="#155EEF" />
-      <path d="M44 160 h210 l-14 22 h-182 Z" fill="#C9D6EA" />
-      {/* mug */}
-      <rect x="18" y="138" width="30" height="40" rx="6" fill="#155EEF" />
-      <path d="M48 148 h6 a8 8 0 0 1 0 16 h-6" stroke="#155EEF" strokeWidth="5" fill="none" />
     </svg>
   );
 }

@@ -1,40 +1,35 @@
 # Desain Sistem — Psikologia Career
 
-Acuan: mockup Psikologia Career (biru, kartu lembut, chip melayang), pola UX halaman *website design* Squarespace
-(tipografi besar, copy ringkas, showcase produk bertab yang berganti otomatis, FAQ akordeon, CTA penutup gelap),
-dan prinsip `design-taste-frontend` (taste-skill): skala tipe yang berani, komposisi yang tidak seragam,
-gambar dari produk sendiri, dan gerakan yang bermakna.
+Sumber utama: berkas brand **`psikologia-career-landing.html`** dari pemilik produk. Halaman depan (`/`) adalah port
+langsung berkas itu ke React; halaman fungsional lain memakai token dan komponen yang sama.
 
-> Halaman Squarespace tidak dapat direkam langsung dari lingkungan build (jaringan dibatasi), jadi polanya
-> diterapkan dari pengetahuan umum tentang desainnya, bukan dari tangkapan halaman.
+## Implementasi
+- **Landing**: `frontend/src/pages/LandingPage.tsx` + `frontend/src/styles/landing.css` (CSS berkas brand, semua selector
+  di-scope ke `.lp` agar tidak bocor ke halaman lain; `.container` diganti `.lp-container` karena bentrok dengan Tailwind).
+- **Global**: `tailwind.config.js`, `styles/index.css`, `components/ui/*`, `layouts/Navbar.tsx`, `layouts/Footer.tsx`.
 
-## Token (Tailwind `tailwind.config.js`)
+## Token
 | Peran | Nilai |
 |---|---|
-| Primary | `#155EEF` (hover `#0F4BC4`), tint `primary-50 #EAF2FF`, `primary-100 #D6E6FF` |
-| Navy (judul, band gelap) | `#102A56` |
-| Sky (aksen ilustrasi) | `#67B7FF` |
-| Background | `#F7FAFF` · Surface `#FFFFFF` |
-| Teks / teks sekunder | `#172B4D` / `#64748B` |
-| Tag kecenderungan | violet `#5B4BDB/#EEEBFF`, biru `#155EEF/#EAF2FF`, oranye `#C2570C/#FFF1E6` (+ teal, rose, green) |
-| Radius | kartu `rounded-3xl`, band `rounded-4xl` (2rem), tombol `rounded-xl`, chip `rounded-full` |
-| Bayangan | `shadow-card` (diam, lembut), `shadow-lift` (hover/melayang), `shadow-chip`, `shadow-glow` (tombol utama) |
-| Font | Plus Jakarta Sans 400–800; judul tracking −0.02 s.d. −0.035em |
+| Ink (teks & judul) | `#101d42` |
+| Muted | `#53627f` |
+| Blue (aksi) | `#1467ed` · gelap `#084cbf` · lembut `#eaf3ff` |
+| Garis kartu | `#dce8fb` |
+| Background | `#f9fbff` · surface `#fff` |
+| Font | Inter 400–900; judul tracking −0.04 s.d. −0.065em |
+| Radius | kartu 18–24px, tombol 13px, chip penuh |
+| Bayangan | kartu `0 9px 24px rgba(27,71,133,.045)`, hover `0 16px 28px rgba(27,71,133,.09)` |
+| Tombol utama | gradien `#1686ff → #0757d9`, bayangan biru, naik 2px saat hover |
 
-## Komponen & pola
-- `.card`, `.card-soft`, `.card-hover` (naik 4px + bayangan biru saat hover), `.icon-tile`, `.chip`, `.hero-wash`, `.band-blue`.
-- Tombol: `primary` (glow + naik saat hover), `secondary`, `soft`, `ghost`, `danger`, `white`, `outlineLight`; semua punya efek tekan `active:scale-.97`.
-- `ToolShowcase`: tab vertikal yang berganti otomatis tiap 6,5 dtk dengan bilah progres; berhenti saat hover/fokus; navigasi panah keyboard; panel berisi cuplikan UI aplikasi (diberi label "Contoh tampilan").
-- `FaqAccordion`: `<details>` native (aksesibel tanpa JS).
-- Ilustrasi SVG (`Illustrations.tsx`): `HeroPerson`, `SummitIllustration`, `DeskIllustration` — dapat diganti foto asli dengan rasio sama.
-- Likert refleksi: satu baris per pernyataan, angka 1–5 di kanan (desktop) / di bawah (mobile), legenda skala di atas.
+## Penyesuaian dari berkas brand (dan alasannya)
+- Semua tautan diarahkan ke rute yang ada (Blog, Tentang Kami, FAQ, Hubungi Kami, ikon media sosial dihapus/diganti karena belum ada halamannya).
+- Bukti yang dikarang dihapus: "10.000+ pengguna" → "Gratis untuk dicoba"; rating bintang dihapus; testimoni diberi label
+  "Contoh testimoni"; panel dashboard di hero diberi label "Contoh tampilan".
+- Foto hero `psikologia-career-hero.png` tidak tersedia; ditampilkan ilustrasi SVG sampai file itu ditaruh di
+  `frontend/public/psikologia-career-hero.png` (komponen otomatis memakai foto bila ada).
+- Lapisan gerakan: panel dashboard & catatan melayang pelan, reveal bertahap saat scroll, hover pada kartu;
+  semua dimatikan untuk `prefers-reduced-motion`, dan selalu tampil saat dicetak.
 
-## Gerakan
-- `useReveal` + atribut `data-reveal` / `data-reveal-delay`: elemen naik 20px + fade saat masuk viewport, bertahap 80–120ms.
-- Chip hero melayang (`animate-float`), panel showcase `animate-scale-in`, testimoni berganti otomatis (bisa dipilih).
-- `prefers-reduced-motion`: semua animasi dimatikan, konten tetap tampil. Mode cetak memaksa semua konten terlihat.
-
-## Aturan
-- Tidak ada horizontal overflow di 375–390px (diuji E2E).
-- Konten contoh selalu diberi label (testimoni, "Contoh tampilan").
-- Kontras teks utama memakai ink penuh; abu-abu hanya untuk teks sekunder.
+## Catatan taste-skill
+Berkas brand memakai gradien, bayangan, chip label di atas judul, dan kartu berikon — perangkat yang dilarang aturan
+umum taste-skill. Sesuai bagian "existing brand", aset brand dipertahankan dan aturan itu dikecualikan untuk merek ini.

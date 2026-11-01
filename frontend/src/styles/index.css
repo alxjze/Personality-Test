@@ -5,7 +5,7 @@
 @layer base {
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body { @apply bg-surface text-ink font-sans antialiased; }
-  h1, h2, h3, h4 { @apply text-navy; letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { @apply text-navy; letter-spacing: -0.04em; }
   :focus-visible { @apply outline-none ring-2 ring-primary ring-offset-2; }
   ::selection { background: #D6E6FF; color: #102A56; }
 }
@@ -13,8 +13,9 @@
 @layer components {
   .container-page { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8; }
   /* Cards: soft, borderless-feeling surfaces with a gentle blue-tinted shadow */
-  .card { @apply rounded-3xl bg-white shadow-card ring-1 ring-slate-900/[0.04]; }
-  .card-soft { @apply rounded-3xl bg-primary-50/70 ring-1 ring-primary/[0.06]; }
+  /* Cards follow the brand file: white, 1px #dce8fb border, soft blue shadow, 18–24px radius */
+  .card { @apply rounded-3xl border border-line bg-white shadow-card; }
+  .card-soft { @apply rounded-3xl border border-line bg-gradient-to-br from-[#f6faff] to-[#ebf5ff]; }
   .card-hover { @apply transition duration-300 hover:-translate-y-1 hover:shadow-lift; }
   .label { @apply mb-1.5 block text-sm font-semibold text-ink; }
   .input {
@@ -25,7 +26,7 @@
   .input-error { @apply border-red-400 focus:border-red-500 focus:ring-red-500/15; }
   .field-error { @apply mt-1.5 text-xs font-medium text-red-600; }
   .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
-  .icon-tile { @apply grid shrink-0 place-items-center rounded-2xl bg-white text-primary shadow-sm ring-1 ring-primary/10; }
+  .icon-tile { @apply grid shrink-0 place-items-center rounded-2xl bg-[#edf5ff] text-primary; }
   .hero-wash {
     background:
       radial-gradient(60% 70% at 85% 20%, rgba(103,183,255,0.35) 0%, rgba(103,183,255,0) 60%),

@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#155EEF', 600: '#155EEF', 700: '#0F4BC4', 50: '#EAF2FF', 100: '#D6E6FF', 200: '#B3D0FF' },
-        navy: '#102A56',
-        sky: '#67B7FF',
-        surface: '#F7FAFF',
-        ink: '#172B4D',
-        muted: '#64748B',
+        primary: { DEFAULT: '#1467ED', 600: '#1467ED', 700: '#084CBF', 50: '#EAF3FF', 100: '#D9E9FF', 200: '#B9D4FB' },
+        line: '#DCE8FB',
+        navy: '#101D42',
+        sky: '#32A5FF',
+        surface: '#F9FBFF',
+        ink: '#101D42',
+        muted: '#53627F',
         // Soft tag palette for career tendencies (matches the mockup's coloured chips)
         tag: {
           violet: '#5B4BDB', violetBg: '#EEEBFF',
@@ -21,13 +22,13 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       boxShadow: {
-        card: '0 1px 2px rgba(16,42,86,0.04), 0 8px 24px -12px rgba(16,42,86,0.10)',
-        lift: '0 18px 40px -16px rgba(21,94,239,0.28)',
+        card: '0 9px 24px rgba(27, 71, 133, .045)',
+        lift: '0 16px 28px rgba(27, 71, 133, .09)',
         chip: '0 10px 30px -10px rgba(16,42,86,0.22)',
-        glow: '0 12px 32px -12px rgba(21,94,239,0.55)',
+        glow: '0 9px 20px rgba(16, 100, 226, .20)',
       },
       borderRadius: { xl2: '1.25rem', '4xl': '2rem' },
       keyframes: {

@@ -21,7 +21,7 @@ function ScoreRing({ score }: { score: number }) {
     <div className="relative h-24 w-24 shrink-0">
       <svg viewBox="0 0 80 80" className="h-24 w-24 -rotate-90" aria-hidden>
         <circle cx="40" cy="40" r={r} fill="none" stroke="#EAF2FF" strokeWidth="8" />
-        <circle cx="40" cy="40" r={r} fill="none" stroke={score >= 70 ? '#16a34a' : score >= 50 ? '#155EEF' : '#d97706'} strokeWidth="8" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - score / 100)} />
+        <circle cx="40" cy="40" r={r} fill="none" stroke={score >= 70 ? '#16a34a' : score >= 50 ? '#1467ED' : '#d97706'} strokeWidth="8" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - score / 100)} />
       </svg>
       <div className="absolute inset-0 grid place-items-center text-center">
         <div><p className="text-2xl font-extrabold text-navy">{score}</p><p className="-mt-1 text-[11px] text-muted">/100</p></div>

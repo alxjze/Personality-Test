@@ -1,42 +1,43 @@
 import { Link } from 'react-router-dom';
 import { Logo } from '@/components/ui/Logo';
 
+/** Footer from the brand file, with every link pointing at a real route. */
+const COLUMNS = [
+  { title: 'Produk', links: [['Refleksi Karier', '/career-reflection'], ['AI Career Assistant', '/career-assistant'], ['CV Reviewer', '/cv-reviewer'], ['Persiapan Interview', '/interview-preparation']] },
+  { title: 'Akun', links: [['Masuk', '/login'], ['Daftar Gratis', '/register'], ['Dashboard', '/dashboard']] },
+  { title: 'Bantuan', links: [['Cara Kerja', '/#cara-kerja'], ['Profil & Privasi', '/profile']] },
+  { title: 'Legal', links: [['Kebijakan Privasi', '/privasi'], ['Syarat & Ketentuan', '/syarat']] },
+] as const;
+
 export function Footer() {
   return (
-    <footer className="no-print mt-20 border-t border-slate-200 bg-white [main:has(>section.bg-navy:last-child)+&]:mt-0">
-      <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="sm:col-span-2 lg:col-span-1">
-          <Logo />
-          <p className="mt-3 text-sm text-muted">Kenali potensimu. Bangun kariermu. Platform pengembangan karier dengan pendekatan psikologi dan AI.</p>
+    <footer className="no-print pb-8">
+      <div className="mx-auto w-[min(1240px,calc(100%-32px))] lg:w-[min(1240px,calc(100%-48px))]">
+        <div className="grid grid-cols-2 gap-6 border-t border-[#e4ebf6] py-7 lg:grid-cols-[1.65fr_repeat(4,1fr)]">
+          <div className="col-span-2 lg:col-span-1">
+            <Logo className="text-[18px]" />
+            <p className="mt-3 max-w-[270px] text-sm text-[#75819a] lg:ml-[41px] lg:text-xs">Karier yang bermakna, dimulai dari memahami dirimu.</p>
+          </div>
+          {COLUMNS.map((c) => (
+            <div key={c.title}>
+              <h3 className="mb-3 text-xs font-bold tracking-normal text-navy">{c.title}</h3>
+              <ul className="space-y-2">
+                {c.links.map(([label, to]) => (
+                  <li key={to}>
+                    {to.startsWith('/#') ? (
+                      <a href={to} className="text-sm text-[#66738c] transition-colors hover:text-primary lg:text-xs">{label}</a>
+                    ) : (
+                      <Link to={to} className="text-sm text-[#66738c] transition-colors hover:text-primary lg:text-xs">{label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div>
-          <p className="mb-3 text-sm font-bold text-navy">Fitur</p>
-          <ul className="space-y-2 text-sm text-muted">
-            <li><Link className="hover:text-primary" to="/career-reflection">Refleksi Karier</Link></li>
-            <li><Link className="hover:text-primary" to="/career-assistant">AI Career Assistant</Link></li>
-            <li><Link className="hover:text-primary" to="/cv-reviewer">CV Reviewer</Link></li>
-            <li><Link className="hover:text-primary" to="/interview-preparation">Persiapan Interview</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-3 text-sm font-bold text-navy">Akun</p>
-          <ul className="space-y-2 text-sm text-muted">
-            <li><Link className="hover:text-primary" to="/login">Masuk</Link></li>
-            <li><Link className="hover:text-primary" to="/register">Daftar</Link></li>
-            <li><Link className="hover:text-primary" to="/dashboard">Dashboard</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-3 text-sm font-bold text-navy">Informasi</p>
-          <ul className="space-y-2 text-sm text-muted">
-            <li><Link className="hover:text-primary" to="/privasi">Kebijakan Privasi</Link></li>
-            <li><Link className="hover:text-primary" to="/syarat">Syarat Penggunaan</Link></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-slate-100">
-        <div className="container-page py-5 text-xs leading-relaxed text-muted">
-          © {new Date().getFullYear()} Psikologia Career · psikologia.id — Hasil refleksi dan saran AI bersifat panduan eksplorasi, bukan tes psikologi tervalidasi, diagnosis, atau keputusan mutlak tentang kariermu.
+        <div className="flex flex-col justify-between gap-2 border-t border-[#e8eef7] pt-4 text-[11px] text-[#95a0b2] sm:flex-row">
+          <span>© {new Date().getFullYear()} Psikologia Career. Hak cipta dilindungi.</span>
+          <span>Hasil refleksi dan saran AI adalah panduan eksplorasi, bukan tes psikologi tervalidasi atau diagnosis.</span>
         </div>
       </div>
     </footer>
